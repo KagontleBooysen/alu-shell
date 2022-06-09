@@ -1,2 +1,2 @@
 #!/bin/bash
-find -mindepth 1 -maxdepth 1 -type d | wc -l
+find /path/to/directory -type d \! -name . -prume -exec printf x \ | wc -c
