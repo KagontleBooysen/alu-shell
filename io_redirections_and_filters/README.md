@@ -1,1 +1,1 @@
-script that dat displays a confused smiley
+script that duplicates the last line of the file iacta
