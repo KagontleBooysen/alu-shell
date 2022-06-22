@@ -1,1 +1,1 @@
-script that displays its own PID
+manage_my_process
