@@ -1,1 +1,1 @@
-manage_my_process
+script that can write PID
