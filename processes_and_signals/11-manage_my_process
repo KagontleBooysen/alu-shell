@@ -9,11 +9,11 @@ Error () {
 
 start() {
 	./manage_my_process &
-        	echo $! > $PIDFILE
+        	echo "$!" > "$PIDFILE"
 }
 
 stop() {
-	pkill -f ./manage_my_process & sudo rm $PIDFILE
+	pkill -f ./manage_my_process & sudo rm "$PIDFILE"
 }
 
 restart() {
