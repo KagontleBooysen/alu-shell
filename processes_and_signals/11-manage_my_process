@@ -1,31 +1,40 @@
 #!/usr/bin/env bash
 #Bash script that creates a subproce
 
-PIDFILE=/var/run/my_process.pid
+FILE="/var/run/my_process.pid"
+
+Error () {
+	echo "Usage: manage_my_process {start|stop|restart}"
+}
 
 start() {
-	./manage_my_process &
-	echo "$!" > "$PIDFILE"
+	./manage_my_process & echo $$ > $FILE
 }
 
 stop() {
-	sudo kill -15 "$(cat "$PIDFILE")" && rm -f "$PIDFILE"
+	pkill -f ./"manage_my_process" & sudo rm $FILE
 }
 
-case "$1" in
-	start)
-		start
-		echo "manage_my_process started"
-		;;
-	stop)
+restart() {
+	stop
+	start
+}
+
+if [ $# != 1 ]; then
+	Error
+else
+	case "$1" in
+		start)
+		    start
+		    echo "manage_my_process started";;
+	    stop)
 		stop
-		echo "manage_my_process stopped"
-		;;
-	restart)
-		stop
-		start
-		echo "manage_my_process restarted"
-		;;
-		echo "Usage: manage_my_process {start|stop|restart}"
+	    echo"manage_my_process stopped";;
+    restart)
+          restart
+          echo "manage_my_process restarted";;
+  *)
+          Error;;
 esac
+fi
 
