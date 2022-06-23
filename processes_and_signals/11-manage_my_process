@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 #Bash script that creates a subproce
 
-FILE="/var/run/my_process.pid"
+PIDFILE="/var/run/my_process.pid"
 
 Error () {
 	echo "Usage: manage_my_process {start|stop|restart}"
 }
 
 start() {
-	./manage_my_process & echo $$ > $FILE
+	./manage_my_process & echo $$ > $PIDFILE
 }
 
 stop() {
-	pkill -f ./"manage_my_process" & sudo rm $FILE
+	pkill -f ./"manage_my_process" & sudo rm $PIDFILE
 }
 
 restart() {
@@ -29,7 +29,7 @@ else
 		    echo "manage_my_process started";;
 	    stop)
 		stop
-	    echo"manage_my_process stopped";;
+	    echo "manage_my_process stopped";;
     restart)
           restart
           echo "manage_my_process restarted";;
