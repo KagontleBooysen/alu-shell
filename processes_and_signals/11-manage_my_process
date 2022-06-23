@@ -9,7 +9,7 @@ Error () {
 
 start() {
 	./manage_my_process &
-        	echo '$! > $PIDFILE'
+        	echo $! > $PIDFILE
 }
 
 stop() {
